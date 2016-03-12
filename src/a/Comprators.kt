@@ -5,7 +5,6 @@ class Person(val name: String, val id: Int, val cpg: Double) {
     override fun toString() = "[$name, $id, $cpg]"
 }
 
-
 interface Comparator {
     /**
      * compares the first person with the second one.
