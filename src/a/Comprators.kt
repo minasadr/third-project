@@ -60,25 +60,75 @@ fun sort(persons: Array<Person>, comparator: Comparator) {
     }
 }
 
+
+fun sort(persons: Array<Person>, compare: (Person, Person) -> Int) {
+    for (n in 0..persons.size - 2) {
+        for (m in n + 1..persons.size - 1) {
+            if (compare(persons[m], persons[n]) == -1) {
+                val z = persons[n]
+                persons[n] = persons[m]
+                persons[m] = z
+            }
+        }
+    }
+}
+
 fun main(args: Array<String>) {
     val persons = arrayOf(Person("n", 12, 3.5), Person("o", 11, 3.2), Person("m", 13, 3.1))
     println("original array")
     for (n in persons) {
         println(n)
     }
-    sort(persons, NameComparator())
-    println("sorted by name")
-    for (n in persons) {
-        println(n)
+    /*    sort(persons, NameComparator())
+        println("sorted by name")
+        for (n in persons) {
+            println(n)
+        }*/
+
+    println()
+    sort(persons) { first, second ->
+        when {
+            first.name > second.name -> 1
+            first.name < second.name -> -1
+            else -> 0
+        }
     }
-    sort(persons, IdComparator())
-    println("sorted by Id")
-    for (n in persons) {
-        println(n)
+    persons.forEach { println(it) }
+
+    /*
+        sort(persons, IdComparator())
+        println("sorted by Id")
+        for (n in persons) {
+            println(n)
+        }
+    */
+
+    println()
+    sort(persons) { first, second ->
+        when {
+            first.id > second.id -> 1
+            first.id < second.id -> -1
+            else -> 0
+        }
     }
-    sort(persons, CpgComparator())
-    println("sorted by CGP")
-    for (n in persons) {
-        println(n)
+    persons.forEach { println(it) }
+
+
+    /*
+        sort(persons, CpgComparator())
+        println("sorted by CGP")
+        for (n in persons) {
+            println(n)
+        }
+    */
+
+    println()
+    sort(persons) { first, second ->
+        when {
+            first.cpg > second.cpg -> 1
+            first.cpg < second.cpg -> -1
+            else -> 0
+        }
     }
+    persons.forEach { println(it) }
 }

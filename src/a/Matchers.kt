@@ -30,7 +30,15 @@ fun find(persons: List<Person>, matcher: Matcher): List<Person> {
     return result
 }
 
-
+fun find(persons: List<Person>, match: (Person) -> Boolean): List<Person> {
+    val result = ArrayList<Person>()
+    for (person in persons) {
+        if (match(person)) {
+            result.add(person)
+        }
+    }
+    return result
+}
 
 fun main(args: Array<String>) {
     val persons = listOf(Person("n", 12, 3.5), Person("o", 11, 3.6), Person("m", 13, 3.1))
@@ -44,5 +52,13 @@ fun main(args: Array<String>) {
     for (n in resultLower) {
         println(n)
     }
+
+    println()
+    val result3 = find(persons) { it.cpg > 3.4 }
+    result3.forEach { println(it) }
+
+    println()
+    val result4 = find(persons) { it.cpg < 3.4 }
+    result4.forEach { println(it) }
 }
 
