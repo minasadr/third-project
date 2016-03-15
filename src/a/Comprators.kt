@@ -45,7 +45,6 @@ class CpgComparator : Comparator {
             else -> 0
         }
     }
-
 }
 
 fun sort(persons: Array<Person>, comparator: Comparator) {
@@ -79,11 +78,12 @@ fun main(args: Array<String>) {
     for (n in persons) {
         println(n)
     }
-    /*    sort(persons, NameComparator())
-        println("sorted by name")
-        for (n in persons) {
-            println(n)
-        }*/
+
+    sort(persons, NameComparator())
+    println("sorted by name")
+    for (n in persons) {
+        println(n)
+    }
 
     println()
     sort(persons) { first, second ->
@@ -93,15 +93,13 @@ fun main(args: Array<String>) {
             else -> 0
         }
     }
-    persons.forEach { println(it) }
 
-    /*
-        sort(persons, IdComparator())
-        println("sorted by Id")
-        for (n in persons) {
-            println(n)
-        }
-    */
+    persons.forEach { println(it) }
+    sort(persons, IdComparator())
+    println("sorted by Id")
+    for (n in persons) {
+        println(n)
+    }
 
     println()
     sort(persons) { first, second ->
@@ -113,14 +111,11 @@ fun main(args: Array<String>) {
     }
     persons.forEach { println(it) }
 
-
-    /*
-        sort(persons, CpgComparator())
-        println("sorted by CGP")
-        for (n in persons) {
-            println(n)
-        }
-    */
+    sort(persons, CpgComparator())
+    println("sorted by CGP")
+    for (n in persons) {
+        println(n)
+    }
 
     println()
     sort(persons) { first, second ->
